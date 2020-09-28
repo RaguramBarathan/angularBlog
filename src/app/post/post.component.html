@@ -1,0 +1,79 @@
+<div class="container-fluid ">
+    <!-- content row -->
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-sm-2 col-md-2">
+            <div style="text-align: center;">
+                <div class="card-body">
+                    <img src="{{postDetails.imagePath}}" height="100" />
+                    <h5 class="card-title">{{ postDetails.petName }}</h5>
+                    <p class="card-text">{{ postDetails.petLine }}</p>
+                    <a 
+                     *ngIf="postDetails.id === loggedInUid"
+                        class="btn btn-primary btn-sm" [routerLink]="['/post/edit',id]">Edit </a><br><br>
+                    <a class="btn btn-success btn-sm">Follow</a><br>
+                    <a class="btn btn-info btn-sm">Podcast</a><br>
+                    <a class="btn btn-danger btn-sm">Youtube</a>
+                </div>
+            </div>
+        </div>
+        <!-- Middle / Main Content -->
+        <div class="col-sm-8 col-md-8">
+            <!-- Heading -->
+            <div class="mb-6 " style="padding-top: 10px;">
+               
+                <h6> {{postDetails.createdBy }}</h6>
+                
+            
+                <small class="text-muted"> Episode {{postDetails.episode }} </small>
+                <small class="text-muted">{{postDetails.createdOn | date: 'dd MMM yy' }} </small>
+                <small class="text-muted"> {{postDetails.readMins }} minutes read </small>
+            </div>
+            <!-- Title -->
+            <div class="mb-2">
+                <h5> {{postDetails.title }}</h5>
+                <small class="text-muted">Inspired by : {{postDetails.inspiredBy }}</small>
+                <small class="text-muted"> {{postDetails.subtitle}} </small>
+            </div>
+            <!-- Main Content -->
+            <div class="mb-2">
+                <p> 
+                    {{postDetails.blogContent}}
+                </p>
+
+            </div>
+        </div>
+        <!-- last Column -->
+        <div class="col-sm-2 col-md-2">
+            <div style="padding-top: 10px;">
+                <h5><u>Featured Episodes</u></h5>
+                <div *ngFor="let featEp of featuredEpisodes" class="mb-2">
+                   <strong class="featuredEpisode">{{featEp.title}}</strong><br>
+                    <small class="text-muted">{{featEp.author}}</small>
+                </div>
+            </div>
+            <br>
+            <!-- Next Episodes -->
+            <div *ngIf="this.nextEpisodes.length > 0 ; else Nodata" class="mb-2">
+                <h5><u>Next Episodes</u></h5>
+                <div *ngFor="let nextEp of nextEpisodes">
+                    <a [routerLink]="['/post', nextEp.index]" class="nextEpisode">
+                        {{nextEp.title }} - 
+                        <small class="text-muted">{{nextEp.createdBy}}</small>
+                    </a>
+                   
+                </div>
+            </div>
+            <!-- no next episodes -->
+            <ng-template #Nodata>
+                <h5><a class="nextEpisode" routerLink="/blogs">Hope you enjoy reading this series</a></h5>
+            </ng-template>
+        </div>
+    </div>
+    <!-- Youtube Row -->
+    <div class="row ">
+        <div class="col-sm-6 col-md-12" style="text-align: center;">
+            <youtube-player videoId="{{postDetails.videoID}}"></youtube-player>
+        </div>
+    </div>
+</div>

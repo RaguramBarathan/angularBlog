@@ -1,0 +1,14 @@
+input.ng-invalid.ng-touched , 
+textarea.ng-invalid.ng-touched 
+{
+    border : 1px red solid;
+} 
+
+label{
+    font-weight: bold;
+}
+.header-fs{
+    font-weight: bold;
+    font-style: italic;
+    color:orange;
+  }

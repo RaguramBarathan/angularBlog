@@ -1,0 +1,19 @@
+a{
+    margin: 1px;
+}
+
+h6{
+    color: orange;
+    font-weight: bolder;
+}
+small{
+    margin-right: 10px;
+}
+
+.nextEpisode {
+    color: orange;
+    font-weight: bolder;
+}
+.featuredEpisode {
+    color:lightsalmon;
+}

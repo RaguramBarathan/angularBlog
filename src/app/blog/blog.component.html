@@ -1,0 +1,46 @@
+<!-- <app-blog-card ></app-blog-card> -->
+<div class="row">
+  <div class="col-md-3" *ngFor="let blog of blogs ; let i = index" style="padding-bottom: 5px;padding-top: 5px;">
+   
+    <div class="card" [routerLink]="['/post' , i]" style="cursor: pointer;">
+      <!-- Header -->
+      <a [routerLink]="['/post' , i]">
+        <div class="card-header header-fs">
+          {{ blog.title }}
+        </div>
+      </a>
+      <!-- image -->
+      <!-- <img class="card-img-top" src="{{ blog.imagePath }}" alt="" > -->
+      <!-- body -->
+      <div class="card-body" style="text-align: center;">
+        <img src="{{ blog.imagePath }}" alt="" height="100">
+        <p class="card-text">{{ blog.subtitle }}</p>
+      </div>
+      <!-- Footer -->
+      <div class="card-footer ">
+        <div class="row">
+          <div class="col-md-6 text-left">
+            <button   
+            *ngIf="loggedInUid === blog.id"
+            class="btn btn-primary" [routerLink]="['/post/edit' , i]"> Edit</button>
+          </div>
+          <div class=" col-md-6 text-right">
+            <small class="text-muted" type="datetime-local"> <b> Episode- {{ blog.episode }} </b>-
+              {{ blog.createdOn  | date: ' dd MMM yy'}}
+            </small>
+            <br>
+            <small><strong> <i> {{ blog.createdBy }} </i></strong></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<!-- No Data -->
+<div class="row" *ngIf="blogs.length === 0 ">
+  <div class="col-sm-12" style="text-align: center;">
+    <img src="{{ localIcon }}" alt=" Sorry Couldn't find the Book">
+  </div>
+</div>

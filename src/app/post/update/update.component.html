@@ -1,0 +1,149 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-10">
+
+
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <!-- Heading -->
+                <div class="row p-2">
+                    <div class="col-md-8">
+                        <h3 class="header-fs">Express your Mind</h3>
+                        <!-- <p class="text-muted py-1">{{ newBlog.createdOn | date: 'dd MMM yy , HH:MM' }} </p> -->
+
+                    </div>
+                    <div class="col-md-4">
+                        <div name="writeNew" *ngIf="!editMode">
+                        <button class="btn btn-success mr-2" type="submit" [disabled]='!f.valid'>Publish</button>
+                        <button class="btn btn-primary mr-2" type="button" (click)="onClear()">Reset </button>
+                    </div>
+                    <div name="editBlog" *ngIf="editMode">
+                        <button class="btn btn-success mr-2" type="submit" [disabled]='!f.valid || f.untouched'>Save Changes</button>
+                        <button class="btn btn-primary mr-2" type="button" (click)='onCancel()'>Cancel </button>
+                    </div>
+                    </div>
+                </div>
+                <!-- Content -->
+                <!-- Row 0 -->
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="createdOn">Episode Date</label>
+                        <input type="date" class="form-control" required id="createdOn" name="createdOn"
+                            placeholder="Enter Date" [(ngModel)]="newBlog.createdOn">
+                    </div>
+                </div>
+                <!-- Row 1 -->
+                <div class="form-row">
+                    <!-- Title -->
+                    <div class="form-group col-md-4">
+
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" required id="title" name="title"
+                            placeholder="Enter Title" [(ngModel)]="newBlog.title">
+                    </div>
+                    <!-- subtitle -->
+                    <div class="form-group col-md-8">
+                        <label for="subtitle">Subtitle</label>
+                        <input type="text" class="form-control" required id="subtitle" name="subtitle"
+                            placeholder="Enter Subtitle" [(ngModel)]="newBlog.subtitle">
+                    </div>
+                </div>
+                <!-- Row 1.1 -->
+                <div class="form-row">
+                    <!-- One line -->
+                    <div class="form-group col-md-4">
+
+                        <label for="petName">One word Summary</label>
+                        <input type="text" class="form-control" required id="petName" name="petName"
+                            placeholder="Enter one word title" [(ngModel)]="newBlog.petName">
+                    </div>
+                    <!-- onle liner -->
+                    <div class="form-group col-md-8">
+                        <label for="petLine">One Liner</label>
+                        <input type="text" class="form-control" required id="petLine" name="petLine"
+                            placeholder="Enter one liner" [(ngModel)]="newBlog.petLine">
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="form-row">
+                    <!-- Episode -->
+                    <div class="form-group col-md-2">
+                        <label for="episode">Episode</label>
+                        <input type="text" class="form-control" required id="episode" name="episode"
+                            placeholder="Enter Episode" [(ngModel)]="newBlog.episode">
+                    </div>
+                    <!-- readMins -->
+                    <div class="form-group col-md-2">
+                        <label for="readMins">Reading Minutes</label>
+                        <input type="number" class="form-control" required id="readMins" name="readMins"
+                            placeholder="Enter Minutes" [(ngModel)]="newBlog.readMins">
+                    </div>
+                    <!--created by  -->
+                    <div class="form-group col-md-4">
+                        <label for="createdBy">Author</label>
+                        <input type="text" class="form-control" required id="createdBy" name="createdBy"
+                            placeholder="Enter Author" [(ngModel)]="newBlog.createdBy">
+                    </div>
+                    <!-- createdOn -->
+                    <div class="form-group col-md-4">
+                        <label for="inspiredBy">Inspired by</label>
+                        <input type="text" class="form-control" required id="inspiredBy" name="inspiredBy"
+                            placeholder="Enter Inspiration" [(ngModel)]="newBlog.inspiredBy">
+                    </div>
+                </div>
+                <!--  Row 3 -->
+                <div class="form-row">
+                    <h3>Blog Main Content</h3>
+                </div>
+                <!-- Blog Content Row 3.1 -->
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <textarea type="text" id="blogContent" required name="blogContent" class="form-control" rows="6"
+                            [(ngModel)]="newBlog.blogContent"></textarea>
+                    </div>
+                </div>
+                <!--  Row 4 -->
+                <div class="form-row">
+                    <h3>Media Content</h3>
+                </div>
+                <!-- Thunmbnail Row 4.1 -->
+                <div class="form-row">
+
+                    <div class="form-group col-md-12">
+                        <!-- Image URL -->
+                        <div class="py-2">
+                            <label for="imagePath">Image URL </label>
+                            <input type="text" class="form-control" id="imagePath" name="imagePath"
+                                placeholder="Paste Image URL" [(ngModel)]="newBlog.imagePath">
+                        </div>
+                        <!-- Image Display -->
+                        <div style="text-align: center;">
+                            <img src="{{ newBlog.imagePath }}" alt="thumbnail" height="100">
+                        </div>
+                    </div>
+                </div>
+                <!-- Thunmbnail Row 4.2 -->
+                <div class="form-row">
+
+                    <!-- Video id -->
+                    <div class="form-group col-md-12">
+                        <label for="videoID">Youtube Video ID</label>
+                        <input type="text" class="form-control" id="videoID" name="videoID" placeholder="Paste Video ID"
+                            [(ngModel)]="newBlog.videoID">
+                        <!-- Video Display -->
+                        <div class="py-2" style="text-align: center;">
+                            <youtube-player videoId="{{newBlog.videoID}}"></youtube-player>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
